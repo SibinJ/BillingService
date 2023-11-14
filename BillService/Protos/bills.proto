@@ -1,0 +1,20 @@
+syntax = "proto3";
+
+option csharp_namespace = "BillService";
+
+service GrpcBill {
+    rpc GetAllBills (GetAllRequest) returns (BillResponse);
+}
+
+message GetAllRequest {}
+
+message GrpcBillModel{
+    int32 billId = 1;
+    string name = 2;
+    string publisher = 3;
+}
+
+message BillResponse {
+    repeated GrpcBillModel bill = 1;
+}
+
