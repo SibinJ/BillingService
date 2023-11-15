@@ -9,6 +9,6 @@ namespace BillService.Data
 
         IEnumerable<Bill> GetAllBills();
         Bill GetBillById(int id);
-        void CreateBill(Bill plat);
+        void CreateBill(Bill bill);
     }
 }

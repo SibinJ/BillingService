@@ -14,14 +14,14 @@ namespace BillService.Data
             _context = context;
         }
 
-        public void CreateBill(Bill plat)
+        public void CreateBill(Bill bill)
         {
-            if(plat == null)
+            if(bill == null)
             {
-                throw new ArgumentNullException(nameof(plat));
+                throw new ArgumentNullException(nameof(bill));
             }
 
-            _context.Bills.Add(plat);
+            _context.Bills.Add(bill);
         }
 
         public IEnumerable<Bill> GetAllBills()

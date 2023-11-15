@@ -16,8 +16,6 @@ using Microsoft.Extensions.Logging;
 using Microsoft.OpenApi.Models;
 using BillService.AsyncDataServices;
 using BillService.Data;
-using BillService.SyncDataServices.Grpc;
-using BillService.SyncDataServices.Http;
 
 namespace BillService
 {
@@ -50,17 +48,13 @@ namespace BillService
 
             services.AddScoped<IBillRepo, BillRepo>();
 
-            services.AddHttpClient<ICommandDataClient, HttpCommandDataClient>();
             services.AddSingleton<IMessageBusClient, MessageBusClient>();
-            services.AddGrpc();
             services.AddControllers();
             services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
             services.AddSwaggerGen(c =>
             {
                 c.SwaggerDoc("v1", new OpenApiInfo { Title = "BillService", Version = "v1" });
             });
-
-            Console.WriteLine($"--> CommandService Endpoint {Configuration["CommandService"]}");
 
         }
 
@@ -83,7 +77,6 @@ namespace BillService
             app.UseEndpoints(endpoints =>
             {
                 endpoints.MapControllers();
-                endpoints.MapGrpcService<GrpcBillService>();
 
                 endpoints.MapGet("/protos/bills.proto", async context =>
                 {

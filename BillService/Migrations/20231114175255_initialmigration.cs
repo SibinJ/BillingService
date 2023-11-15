@@ -6,6 +6,8 @@ namespace BillService.Migrations
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
+            migrationBuilder.DropTable(
+                name: "Bills");
             migrationBuilder.CreateTable(
                 name: "Bills",
                 columns: table => new
@@ -13,8 +15,8 @@ namespace BillService.Migrations
                     Id = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
                     Name = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    Publisher = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    Cost = table.Column<string>(type: "nvarchar(max)", nullable: false)
+                    BillDate = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    BillAmount = table.Column<string>(type: "nvarchar(max)", nullable: false)
                 },
                 constraints: table =>
                 {

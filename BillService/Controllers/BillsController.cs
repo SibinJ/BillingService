@@ -7,7 +7,6 @@ using BillService.AsyncDataServices;
 using BillService.Data;
 using BillService.Dtos;
 using BillService.Models;
-using BillService.SyncDataServices.Http;
 
 namespace BillService.Controllers
 {
@@ -17,18 +16,15 @@ namespace BillService.Controllers
     {
         private readonly IBillRepo _repository;
         private readonly IMapper _mapper;
-        private readonly ICommandDataClient _commandDataClient;
         private readonly IMessageBusClient _messageBusClient;
 
         public BillsController(
             IBillRepo repository, 
             IMapper mapper,
-            ICommandDataClient commandDataClient,
             IMessageBusClient messageBusClient)
         {
             _repository = repository;
             _mapper = mapper;
-            _commandDataClient = commandDataClient;
             _messageBusClient = messageBusClient;
         }
 
@@ -62,16 +58,6 @@ namespace BillService.Controllers
             _repository.SaveChanges();
 
             var billReadDto = _mapper.Map<BillReadDto>(billModel);
-
-            // Send Sync Message
-            try
-            {
-                await _commandDataClient.SendBillToCommand(billReadDto);
-            }
-            catch(Exception ex)
-            {
-                Console.WriteLine($"--> Could not send synchronously: {ex.Message}");
-            }
 
             //Send Async Message
             try

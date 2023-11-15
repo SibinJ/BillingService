@@ -12,9 +12,9 @@ namespace BillService.Models
         public string Name { get; set; }
 
         [Required]
-        public string Publisher { get; set; }
+        public string BillDate { get; set; }
 
         [Required]
-        public string Cost { get; set; }
+        public string BillAmount { get; set; }
     }
 }

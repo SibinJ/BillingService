@@ -6,8 +6,8 @@ namespace BillService.Dtos
 
         public string Name { get; set; }
    
-        public string Publisher { get; set; }
+        public string BillDate { get; set; }
         
-        public string Cost { get; set; }
+        public string BillAmount { get; set; }
     }
 }

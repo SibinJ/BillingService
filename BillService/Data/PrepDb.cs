@@ -37,9 +37,9 @@ namespace BillService.Data
                 Console.WriteLine("--> Seeding Data...");
 
                 context.Bills.AddRange(
-                    new Bill() {Name="Dot Net", Publisher="Microsoft", Cost="Free"},
-                    new Bill() {Name="SQL Server Express", Publisher="Microsoft",  Cost="Free"},
-                    new Bill() {Name="Kubernetes", Publisher="Cloud Native Computing Foundation",  Cost="Free"}
+                    new Bill() {Name="Phil", BillDate="26-Oct-2023", BillAmount="Rs 2315"},
+                    new Bill() {Name="Cameron", BillDate="30-Oct-2023",  BillAmount="Rs 4200"},
+                    new Bill() {Name="Jay", BillDate="02-Nov-2023",  BillAmount="Rs 1560"}
                 );
 
                 context.SaveChanges();
